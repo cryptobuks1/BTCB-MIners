@@ -1,0 +1,25 @@
+@media (min-width: 320px) and (max-width:480px) {
+    .controlNav {
+        background-color: none !important;
+        height: 64px;
+    }
+    .navLinks {
+        display: none;
+    }
+    #show{
+        display: flex;
+        height: 42px;
+        flex-direction: row;
+        align-items: center;
+        background-color: #222;
+        color: #fff;
+    }
+    #hide{
+        display: none;
+    }
+    
+}
+
+.toggleDiv {
+    display: none;
+}
