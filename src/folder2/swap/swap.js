@@ -282,18 +282,18 @@ function Swap() {
       let blance2 = await tokenContract.methods.balanceOf(accountAd)
         .call();
       // let convertedBalanc = blance2 / 10 ** 9;
-      setuserbalance(formatThousands(web3.utils.fromWei(blance2)))
+      setuserbalance(formatThousands(parseFloat(web3.utils.fromWei(blance2))))
       console.log(balanceTwo)
       let getBalance = await contract.methods.getBalance().call();
-      setcontractbalance(formatThousands(web3.utils.fromWei(getBalance)));
+      setcontractbalance(formatThousands(parseFloat(web3.utils.fromWei(getBalance))));
 
 
       let getMyMiners = await contract.methods.hatcheryMiners(accountAd).call();
-      setgetMyMiners(formatThousands(getMyMiners))
-      setdigging(formatThousands((getMyMiners / 2592000) * 60 * 60));
+      setgetMyMiners(formatThousands(parseFloat(getMyMiners)))
+      setdigging(formatThousands(parseFloat((getMyMiners / 2592000) * 60 * 60)));
       let getMyEggs = await contract.methods.getMyEggs().call();
       // formatThousands()
-      setbtcbmined(formatThousands(web3.utils.fromWei(getMyEggs)))
+      setbtcbmined(formatThousands(parseFloat(web3.utils.fromWei(getMyEggs))))
       // let getBalance = await tokenContract.methods.balanceOf(accounts[0])
       // setcontractbalance(getBalance);
 
