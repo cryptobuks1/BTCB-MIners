@@ -255,6 +255,47 @@ function Swap() {
 
     }
   };
+
+  // const balanceOf = async () => {
+  //   const web3 = window.web3;
+  //   try {
+  //     let accounts = await getAccounts();
+  //     let contract = new web3.eth.Contract(abiAda, contractAddressAda);
+  //     let tokenContract = new web3.eth.Contract(tokenAbiAda, tokenAddresAda);
+  //     let blance2 = await tokenContract.methods.balanceOf(accountAd)
+  //       .call();
+  //     // let convertedBalanc = blance2 / 10 ** 9;
+  //     setuserbalance(web3.utils.fromWei(blance2))
+  //     console.log(balanceTwo)
+  //     let getBalance = await contract.methods.getBalance().call();
+  //     setcontractbalance(web3.utils.fromWei(getBalance));
+
+
+  //     let getMyMiners = await contract.methods.hatcheryMiners(accountAd).call();
+  //     setgetMyMiners(getMyMiners)
+  //     setdigging((getMyMiners / 2592000) * 60 * 60);
+  //     let getMyEggs = await contract.methods.getMyEggs().call();
+  //     setbtcbmined(web3.utils.fromWei(getMyEggs))
+  //     // let getBalance = await tokenContract.methods.balanceOf(accounts[0])
+  //     // setcontractbalance(getBalance);
+
+
+  //   } catch (error) {
+  //     console.log("Error while fetching acounts: ", error);
+
+  //   }
+  // };
+
+  function formatThousands(num) {
+    var numbr = parseFloat(num.toFixed(2));
+    // console.log("num", parseFloat(numbr));
+    var values = numbr.toString().split(".");
+    return (
+      values[0].replace(/.(?=(?:.{3})+$)/g, "$&,") +
+      (values.length == 2 ? "." + values[1] : "")
+    );
+  }
+
   const balanceOf = async () => {
     const web3 = window.web3;
     try {
@@ -264,20 +305,20 @@ function Swap() {
       let blance2 = await tokenContract.methods.balanceOf(accountAd)
         .call();
       // let convertedBalanc = blance2 / 10 ** 9;
-      setuserbalance(web3.utils.fromWei(blance2))
+      setuserbalance(formatThousands(web3.utils.fromWei(blance2)))
       console.log(balanceTwo)
       let getBalance = await contract.methods.getBalance().call();
-      setcontractbalance(web3.utils.fromWei(getBalance));
+      setcontractbalance(formatThousands(web3.utils.fromWei(getBalance)));
 
 
       let getMyMiners = await contract.methods.hatcheryMiners(accountAd).call();
-      setgetMyMiners(getMyMiners)
-      setdigging((getMyMiners / 2592000) * 60 * 60);
+      setgetMyMiners(formatThousands(getMyMiners))
+      setdigging(formatThousands((getMyMiners / 2592000) * 60 * 60));
       let getMyEggs = await contract.methods.getMyEggs().call();
-      setbtcbmined(web3.utils.fromWei(getMyEggs))
+      // formatThousands()
+      setbtcbmined(formatThousands(web3.utils.fromWei(getMyEggs)))
       // let getBalance = await tokenContract.methods.balanceOf(accounts[0])
       // setcontractbalance(getBalance);
-
 
     } catch (error) {
       console.log("Error while fetching acounts: ", error);
